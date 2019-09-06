@@ -131,5 +131,10 @@
       }
     }
   },
-  "defaultProject": "car-plate-client"
+  "defaultProject": "car-plate-client",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
