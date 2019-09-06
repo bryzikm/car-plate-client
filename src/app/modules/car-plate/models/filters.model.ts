@@ -9,4 +9,5 @@ export interface Filters {
 export interface CarPlatesResponse {
   carPlates: CarPlate[];
   totalPages: number;
+  totalElements: number;
 }

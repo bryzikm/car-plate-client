@@ -13,14 +13,16 @@ export class CarPlateService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getCarPlates(filters: Filters): Observable<CarPlatesResponse> {
+  getCarPlates(filters: Filters = null): Observable<CarPlatesResponse> {
     let params = new HttpParams();
 
-    Object.keys(filters).forEach((key) => {
-      if (filters[key]) {
-        params = params.append(key, filters[key]);
-      }
-    });
+    if (filters) {
+      Object.keys(filters).forEach((key) => {
+        if (filters[key]) {
+          params = params.append(key, filters[key]);
+        }
+      });
+    }
 
     return this.httpClient.get<CarPlatesResponse>(`${UrlsService.CAR_PLATES}`, {params});
   }

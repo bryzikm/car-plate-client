@@ -3,13 +3,25 @@ import {CommonModule} from '@angular/common';
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {ConfirmationDialogComponent} from './components/confirmation-dialog/confirmation-dialog.component';
 import {UrlsService} from './services/urls.service';
+import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const MODULES = [
   FormsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatCardModule,
+  MatTableModule,
+  MatButtonModule,
+  MatDialogModule,
+  MatSnackBarModule,
+  MatPaginatorModule,
 ];
 const COMPONENTS = [
-  ConfirmationDialogComponent
+  ConfirmationDialogComponent,
 ];
 
 @NgModule({
