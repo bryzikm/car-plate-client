@@ -9,6 +9,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 const MODULES = [
   FormsModule,
@@ -19,6 +21,8 @@ const MODULES = [
   MatDialogModule,
   MatSnackBarModule,
   MatPaginatorModule,
+  MatFormFieldModule,
+  MatInputModule,
 ];
 const COMPONENTS = [
   ConfirmationDialogComponent,

@@ -5,6 +5,7 @@ import {CarPlate} from '../../models/car-plate.model';
 import {Subscription} from 'rxjs';
 import {ConfirmationDialogComponent} from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import {Filters} from '../../models/filters.model';
+import {CarPlateDialogComponent} from '../../components/car-plate-dialog/car-plate-dialog.component';
 
 @Component({
   selector: 'app-car-plate-list',
@@ -44,6 +45,20 @@ export class CarPlateListComponent implements OnInit, OnDestroy {
           text: 'Do you want to remove this element?'
         }
       }).afterClosed().subscribe(isAllowed => this.removeCarPlate(carPlate, isAllowed))
+    );
+  }
+
+  openCarPlateDialog(carPlate: CarPlate = null) {
+    this.subscriptions.add(
+      this.dialog.open(CarPlateDialogComponent, {
+        data: {
+          carPlate
+        }
+      }).afterClosed().subscribe(isSuccess => {
+        if (isSuccess) {
+          this.getCarPlatesByFilters();
+        }
+      })
     );
   }
 

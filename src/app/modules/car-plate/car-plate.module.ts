@@ -16,6 +16,10 @@ import {SharedModule} from '../../shared/shared.module';
     CommonModule,
     SharedModule,
     CarPlateRouting
+  ],
+  entryComponents: [
+    CarPlateDialogComponent
   ]
 })
-export class CarPlateModule { }
+export class CarPlateModule {
+}

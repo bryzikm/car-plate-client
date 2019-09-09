@@ -1,3 +1,51 @@
-<p>
-  car-plate-dialog works!
-</p>
+<h1 mat-dialog-title>
+  {{ isEditMode ? 'Update car plate' : 'Add car plate' }}
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form"
+        class="form">
+    <mat-form-field class="form__field">
+      <input type="text" matInput formControlName="firstName" placeholder="First Name">
+      <mat-error *ngIf="form.get('firstName').invalid">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form__field">
+      <input type="text" matInput formControlName="lastName" placeholder="Last Name">
+      <mat-error *ngIf="form.get('lastName').invalid">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form__field">
+      <input type="text" matInput formControlName="carPlateNumber" placeholder="Car Plate Number">
+      <mat-error *ngIf="form.get('carPlateNumber').invalid">
+        <span *ngIf="form.get('carPlateNumber').hasError('required')">
+          Field is required
+        </span>
+        <span
+          *ngIf="form.get('carPlateNumber').hasError('minlength') || form.get('carPlateNumber').hasError('maxlength')">
+          Field should have between 4 and 7 signs
+        </span>
+        <span *ngIf="!form.get('carPlateNumber').hasError('required') &&
+                     !form.get('carPlateNumber').hasError('minlength') &&
+                     !form.get('carPlateNumber').hasError('maxlength') &&
+                     form.get('carPlateNumber').hasError('wrongCarPlateNumber')">
+          Car plate number should start with letter
+        </span>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary"
+          type="submit"
+          (click)="saveCarPlate(form);"
+          [disabled]="form.invalid">
+    Save
+  </button>
+  <button mat-raised-button color="warn"
+          type="button"
+          [mat-dialog-close]="false">
+    Cancel
+  </button>
+</div>
