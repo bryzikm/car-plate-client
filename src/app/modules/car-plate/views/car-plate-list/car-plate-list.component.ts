@@ -6,6 +6,8 @@ import {Subscription} from 'rxjs';
 import {ConfirmationDialogComponent} from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import {Filters} from '../../models/filters.model';
 import {CarPlateDialogComponent} from '../../components/car-plate-dialog/car-plate-dialog.component';
+import {FormControl} from '@angular/forms';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-car-plate-list',
@@ -17,6 +19,7 @@ export class CarPlateListComponent implements OnInit, OnDestroy {
   totalElements = 0;
   defaultPageSize = 10;
   pageSizeOptions = [5, 10, 20];
+  searchControl = new FormControl();
   readonly filters: Filters = {
     searchText: '',
     page: 1,
@@ -31,6 +34,7 @@ export class CarPlateListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.onSearchControlChange();
     this.getCarPlatesByFilters();
   }
 
@@ -90,5 +94,16 @@ export class CarPlateListComponent implements OnInit, OnDestroy {
         })
       );
     }
+  }
+
+  private onSearchControlChange() {
+    this.subscriptions.add(
+      this.searchControl.valueChanges.pipe(
+        debounceTime(500)
+      ).subscribe(value => {
+        this.filters.searchText = value;
+        this.getCarPlatesByFilters();
+      })
+    );
   }
 }

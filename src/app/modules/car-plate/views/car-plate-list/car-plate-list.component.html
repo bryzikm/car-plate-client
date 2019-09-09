@@ -12,6 +12,11 @@
           Add element
         </button>
       </mat-card-title>
+      <div class="search-bar">
+        <mat-form-field class="form__field">
+          <input matInput type="text" [formControl]="searchControl" class="search-bar__input" placeholder="Search...">
+        </mat-form-field>
+      </div>
       <mat-card-content>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
           <ng-container matColumnDef="id">
